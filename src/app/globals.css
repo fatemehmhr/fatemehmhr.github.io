@@ -1,26 +1,82 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Resume-inspired palette: warm cream, charcoal, dusty blush rose */
+  --background: #f4efeb;
+  --foreground: #3d3a38;
+
+  --cream: #f4efeb;
+  --surface: #ffffff;
+  --ink: #3d3a38;
+  --muted: #837a74;
+  --rose: #c2917f;
+  --rose-soft: #e3c9c0;
+  --charcoal: #54514f;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
+  --color-cream: var(--cream);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-rose: var(--rose);
+  --color-rose-soft: var(--rose-soft);
+  --color-charcoal: var(--charcoal);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html {
+  scroll-behavior: smooth;
+  /* Snap each full-screen section into place while still allowing free
+     scrolling inside sections that are taller than the viewport. */
+  scroll-snap-type: y proximity;
+  scroll-padding-top: 0;
+}
+
+main > section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* Hide the native cursor on fine-pointer devices so the custom cursor takes over.
+   Touch / coarse-pointer devices keep their default behaviour. */
+@media (pointer: fine) {
+  html,
+  html * {
+    cursor: none !important;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(194, 145, 127, 0.35);
+  color: #3d3a38;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(194, 145, 127, 0.4);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(194, 145, 127, 0.6);
 }
