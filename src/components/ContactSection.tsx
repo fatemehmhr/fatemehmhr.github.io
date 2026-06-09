@@ -58,7 +58,7 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="flex min-h-screen flex-col justify-center px-5 py-16 pb-28 sm:px-6 sm:py-24 sm:pb-40"
+      className="flex min-h-screen flex-col justify-center px-5 pb-28 sm:px-6 sm:py-24 sm:pb-40"
     >
       <div className="mx-auto w-full max-w-3xl">
         <Reveal direction="up">

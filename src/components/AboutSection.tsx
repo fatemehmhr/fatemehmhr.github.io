@@ -44,7 +44,7 @@ export function AboutSection() {
         />
 
         <Reveal direction="up">
-          <blockquote className="relative mb-5 overflow-hidden rounded-2xl border border-teal/15 bg-white/60 py-4 pr-4 pl-6 backdrop-blur-sm sm:py-5 sm:pr-6 sm:pl-8">
+          <blockquote className="relative sm:mb-5 mb-2 overflow-hidden rounded-2xl border border-teal/15 bg-white/60 py-2 pr-2 pl-4 backdrop-blur-sm sm:py-5 sm:pr-6 sm:pl-8">
             <span className="absolute top-0 left-0 h-full w-[3px] bg-gradient-to-b from-navy to-teal" />
             <p className="relative text-xs italic text-navy/80 xs:text-[13px] sm:text-lg">
               {about.quote}
