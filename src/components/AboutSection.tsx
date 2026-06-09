@@ -74,7 +74,7 @@ export function AboutSection() {
         </div>
 
         <Reveal direction="up">
-          <h3 className="font-display mb-6 text-lg text-navy sm:text-2xl">
+          <h3 className="font-display mb-2 sm:mb-6 text-lg text-navy sm:text-2xl">
             Experience
           </h3>
         </Reveal>

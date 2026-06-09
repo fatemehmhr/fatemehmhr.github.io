@@ -27,7 +27,7 @@ export function SectionHeader({
   className,
 }: SectionHeaderProps) {
   return (
-    <div className={`relative mb-4  ${className ?? ""}`}>
+    <div className={`relative sm:mb-4 mb-2  ${className ?? ""}`}>
       
 
       <div className="relative pl-1">
@@ -35,7 +35,7 @@ export function SectionHeader({
           <span className="kicker">{kicker}</span>
         </Reveal>
         <Reveal direction="up" delay={0.05}>
-          <h2 className="font-display mt-3 text-2xl leading-tight text-navy sm:text-4xl md:text-[2.75rem]">
+          <h2 className="font-display mt-3 text-lg sm:text-2xl leading-tight text-navy sm:text-4xl md:text-[2.75rem]">
             {title}
           </h2>
         </Reveal>
