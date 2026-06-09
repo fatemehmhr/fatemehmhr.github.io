@@ -5,11 +5,9 @@ on:
     branches: [main]
   workflow_dispatch:
 
-# Grant the GITHUB_TOKEN the permissions required to deploy to Pages.
+# Allow the workflow to push the built site to the gh-pages branch.
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 # Allow only one concurrent deployment; skip runs queued behind a newer one.
 concurrency:
@@ -17,7 +15,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -38,18 +36,12 @@ jobs:
       - name: Disable Jekyll processing
         run: touch ./out/.nojekyll
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./out
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
+      # Publishes the contents of ./out to the gh-pages branch. GitHub Pages
+      # then serves that branch. This avoids the official Pages artifact
+      # pipeline, sidestepping the "multiple artifacts" deploy error.
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          publish_branch: gh-pages
