@@ -36,9 +36,7 @@ jobs:
       - name: Disable Jekyll processing
         run: touch ./out/.nojekyll
 
-      # Publishes the contents of ./out to the gh-pages branch. GitHub Pages
-      # then serves that branch. This avoids the official Pages artifact
-      # pipeline, sidestepping the "multiple artifacts" deploy error.
+      # Publishes the contents of ./out to the gh-pages branch.
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:

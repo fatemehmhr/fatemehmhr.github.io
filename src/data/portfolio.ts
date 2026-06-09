@@ -20,7 +20,7 @@ export const portfolioData = {
     age: 29,
     birthDate: "1996",
     location: "Tehran, Iran",
-    flag: "🇮🇷",
+
     quote:
       "I'm committed to quality, teamwork, and creating real value for the team I work with.",
     education: "B.S. Computer Eng. (Software) — Islamic Azad University, Tehran Central Branch",
@@ -92,6 +92,16 @@ export const portfolioData = {
       company: "Tabiat Makan Holding",
       period: "March 2025 – Present",
  
+    },
+    {
+      role: "Frontend Developer",
+      company: "Freelancer",
+      period: "2024 – 2025",
+    },
+    {
+      role: "Frontend Developer",
+      company: "Chargoon",
+      period: "2023 – 2024",
     },
   ],
   projects: [

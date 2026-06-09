@@ -1,29 +1,27 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { GraduationCap, Languages, Sparkles } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
-import { HoverText } from "@/components/HoverText";
+import { Reveal } from "@/components/Reveal";
+import { SectionHeader } from "@/components/SectionHeader";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.1, duration: 0.5 },
-  }),
-};
-
-const glassCard =
-  "group relative overflow-hidden rounded-2xl border border-white bg-white p-6 shadow-xl shadow-charcoal/10 ring-1 ring-inset ring-white transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-charcoal/15";
-
-function GlassShine() {
-  return (
-    <span
-      aria-hidden
-      className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/60 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full"
-    />
-  );
-}
+const infoCards = (about: typeof portfolioData.about) => [
+  {
+    label: "Education",
+    value: about.education,
+    Icon: GraduationCap,
+  },
+  {
+    label: "Languages",
+    value: about.languages.join("  ·  "),
+    Icon: Languages,
+  },
+  {
+    label: "Interests",
+    value: about.interests.map((i) => `${i.emoji} ${i.label}`).join("   "),
+    Icon: Sparkles,
+  },
+];
 
 export function AboutSection() {
   const { about, experience } = portfolioData;
@@ -31,123 +29,84 @@ export function AboutSection() {
   return (
     <section
       id="about"
-      className="flex min-h-screen flex-col justify-center px-6 py-24"
+      className="flex min-h-screen flex-col justify-center px-5 pt-5 pb-20 sm:px-6 sm:py-0 sm:pb-24"
     >
       <div className="mx-auto w-full max-w-5xl">
-        <motion.p
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
-          custom={0}
-          className="mb-2"
-        >
-          <HoverText
-            text="About Me"
-            hoverColor="var(--ink)"
-            className="text-sm font-medium tracking-widest text-rose uppercase"
-          />
-        </motion.p>
+        <SectionHeader
+          index="01"
+          kicker="About Me"
+          title={
+            <>
+              {about.age} years old, based in{" "}
+              <span className="text-gradient">{about.location}</span>
+            </>
+          }
+        />
 
-        <motion.h2
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
-          custom={1}
-          className="mb-4 text-3xl font-bold text-ink sm:text-4xl"
-        >
-          {about.age} years old, born on{" "}
-          <span className="text-rose">{about.birthDate}</span>
-        </motion.h2>
+        <Reveal direction="up">
+          <blockquote className="relative mb-5 overflow-hidden rounded-2xl border border-teal/15 bg-white/60 py-4 pr-4 pl-6 backdrop-blur-sm sm:py-5 sm:pr-6 sm:pl-8">
+            <span className="absolute top-0 left-0 h-full w-[3px] bg-gradient-to-b from-navy to-teal" />
+            <p className="relative text-xs italic text-navy/80 xs:text-[13px] sm:text-lg">
+              {about.quote}
+            </p>
+          </blockquote>
+        </Reveal>
 
-        <motion.p
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
-          custom={2}
-          className="mb-10 text-lg text-muted"
-        >
-          Based in {about.location} {about.flag}
-        </motion.p>
-
-        <motion.blockquote
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
-          custom={3}
-          className="mb-12 border-l-4 border-rose pl-6 text-xl italic text-ink/75"
-        >
-          &ldquo;{about.quote}&rdquo;
-        </motion.blockquote>
-
-        <div className="grid gap-6 sm:grid-cols-3">
-          {[
-            { label: "Education", value: about.education },
-            {
-              label: "Languages",
-              value: about.languages.join(" · "),
-            },
-            {
-              label: "Interests",
-              value: about.interests
-                .map((i) => `${i.emoji} ${i.label}`)
-                .join("  "),
-            },
-          ].map((item, i) => (
-            <motion.div
-              key={item.label}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              custom={4 + i}
-              className={glassCard}
-            >
-              <GlassShine />
-              <h4 className="relative mb-2 text-sm font-medium tracking-wider text-rose uppercase">
-                {item.label}
-              </h4>
-              <p className="relative text-ink/75">{item.value}</p>
-            </motion.div>
+        <div className="mb-4 grid gap-1 sm:gap-4 sm:grid-cols-3 sm:gap-6">
+          {infoCards(about).map((item, i) => (
+            <Reveal key={item.label} direction="up" delay={i * 0.08}>
+              <div
+                className="card group h-full overflow-hidden p-3 sm:p-6"
+                style={{ backgroundColor: "#2F4156" }}
+              >
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-white/15 text-white transition group-hover:bg-teal group-hover:text-white">
+                  <item.Icon className="h-5 w-5" aria-hidden="true" />
+                </div>
+                <h4 className="mb-2 text-[11px] font-semibold tracking-wider text-sky uppercase sm:text-xs">
+                  {item.label}
+                </h4>
+                <p className="text-xs leading-relaxed text-white/80 sm:text-[15px]">
+                  {item.value}
+                </p>
+              </div>
+            </Reveal>
           ))}
         </div>
 
-        <motion.h3
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
-          custom={7}
-          className="mt-16 mb-6"
-        >
-          <HoverText
-            text="Experience"
-            className="text-2xl font-bold text-ink"
-          />
-        </motion.h3>
+        <Reveal direction="up">
+          <h3 className="font-display mb-6 text-lg text-navy sm:text-2xl">
+            Experience
+          </h3>
+        </Reveal>
 
-        <div className="space-y-4">
-          {experience.map((job, i) => (
-            <motion.div
-              key={`${job.company}-${job.role}`}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              custom={8 + i}
-              className={glassCard}
-            >
-              <GlassShine />
-              <div className="relative flex flex-wrap items-baseline justify-between gap-2">
-                <h4 className="text-lg font-semibold text-ink">{job.role}</h4>
-                <span className="text-sm text-rose">{job.period}</span>
-              </div>
-              <p className="relative mt-1 text-muted">{job.company}</p>
-            </motion.div>
-          ))}
+        {/* Vertical timeline */}
+        <div className="relative pl-7 sm:pl-9">
+          <span className="absolute top-1 bottom-1 left-[6px] w-px bg-gradient-to-b from-navy via-teal to-transparent sm:left-[10px]" />
+          <div className="space-y-4 sm:space-y-5">
+            {experience.map((job, i) => (
+              <Reveal key={`${job.company}-${job.role}`} direction="left" delay={i * 0.08}>
+                <div className="group relative">
+                  {/* Node */}
+                  <span className="absolute top-5 -left-[26px] flex h-3.5 w-3.5 items-center justify-center sm:-left-[34px]">
+                    <span className="absolute h-3.5 w-3.5 rounded-full bg-teal/30 transition group-hover:scale-150" />
+                    <span className="relative h-2 w-2 rounded-full bg-navy ring-2 ring-white" />
+                  </span>
+
+                  <div className="card flex flex-wrap items-baseline justify-between gap-2 p-4 sm:p-5">
+                    <div>
+                      <h4 className="text-[13px] font-semibold text-ink sm:text-base">
+                        {job.role}
+                      </h4>
+                      <p className="mt-1 text-xs text-muted sm:text-sm">{job.company}</p>
+                    </div>
+                    <span className="rounded-full bg-sky/40 px-2.5 py-1 text-[11px] font-medium text-navy sm:px-3 sm:text-xs">
+                      {job.period}
+                    </span>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>

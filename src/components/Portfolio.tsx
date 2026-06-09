@@ -3,7 +3,6 @@
 import { AboutSection } from "@/components/AboutSection";
 import { Background } from "@/components/Background";
 import { ContactSection } from "@/components/ContactSection";
-import { CustomCursor } from "@/components/CustomCursor";
 import { HeroSection } from "@/components/HeroSection";
 import { JourneySection } from "@/components/JourneySection";
 import { Navigation } from "@/components/Navigation";
@@ -15,7 +14,6 @@ export function Portfolio() {
 
   return (
     <>
-      <CustomCursor />
       <Background />
       <main className="relative">
         <HeroSection onScrollDown={() => scrollToSection("about")} />

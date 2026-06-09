@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Mail, Phone } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
+import { Reveal } from "@/components/Reveal";
 
 type IconProps = { className?: string };
 
@@ -58,78 +58,69 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="flex min-h-screen flex-col justify-center px-6 py-24 pb-40"
+      className="flex min-h-screen flex-col justify-center px-5 py-16 pb-28 sm:px-6 sm:py-24 sm:pb-40"
     >
-      <div className="mx-auto w-full max-w-2xl text-center">
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-2 text-sm font-medium tracking-widest text-rose uppercase"
-        >
-          Get in Touch
-        </motion.p>
+      <div className="mx-auto w-full max-w-3xl">
+        <Reveal direction="up">
+          <div className="text-center">
+            <span className="kicker mx-auto w-fit">Get in Touch</span>
+            <h2 className="font-display mt-4 text-2xl leading-tight text-navy xs:text-3xl sm:text-5xl">
+              Let&apos;s build something{" "}
+              <span className="text-gradient">extraordinary</span>
+            </h2>
+            <p className="mx-auto mt-3 max-w-xl text-[13px] text-muted xs:text-sm sm:mt-4 sm:text-base">
+              Have a project in mind or want to collaborate? Reach out through
+              any of the channels below — I usually reply within a day.
+            </p>
+          </div>
+        </Reveal>
 
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="mb-4 text-3xl font-bold text-ink sm:text-4xl"
-        >
-          Let&apos;s Work Together
-        </motion.h2>
+        <div className="mt-8 grid gap-1 sm:mt-12 sm:grid-cols-2 sm:gap-5">
+          <Reveal direction="up">
+            <a
+              href={`mailto:${contact.email}`}
+              className="card group flex h-full items-center gap-3.5 p-3 sm:gap-4 sm:p-6"
+            >
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-sky/40 text-navy transition group-hover:bg-teal group-hover:text-white sm:h-12 sm:w-12">
+                <Mail className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden="true" />
+              </div>
+              <div className="min-w-0">
+                <p className="text-[11px] tracking-wide text-muted uppercase sm:text-xs">
+                  Email me at
+                </p>
+                <p className="text-sm font-medium break-all text-ink sm:text-base">
+                  {contact.email}
+                </p>
+              </div>
+            </a>
+          </Reveal>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="mx-auto mb-12 max-w-xl text-muted"
-        >
-          Have a project in mind or want to collaborate? I&apos;d love to hear
-          from you. Reach out through any of the channels below and let&apos;s
-          create something extraordinary.
-        </motion.p>
+          <Reveal direction="up" delay={0.08}>
+            <a
+              href={`tel:${contact.phone}`}
+              className="card group flex h-full items-center gap-3.5 p-3 sm:gap-4 sm:p-6"
+            >
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-sky/40 text-navy transition group-hover:bg-teal group-hover:text-white sm:h-12 sm:w-12">
+                <Phone className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden="true" />
+              </div>
+              <div className="min-w-0">
+                <p className="text-[11px] tracking-wide text-muted uppercase sm:text-xs">
+                  Call me at
+                </p>
+                <p className="text-sm font-medium break-all text-ink sm:text-base" dir="ltr">
+                  {contact.phone}
+                </p>
+              </div>
+            </a>
+          </Reveal>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-          className="flex flex-col items-stretch gap-5"
-        >
-          <a
-            href={`mailto:${contact.email}`}
-            className="flex items-center gap-4 rounded-2xl border border-charcoal/10 bg-surface p-6 text-left shadow-sm shadow-charcoal/5 transition-colors hover:border-rose/40"
-          >
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-rose/20">
-              <Mail className="h-6 w-6 text-rose" aria-hidden="true" />
-            </div>
-            <div>
-              <p className="text-sm text-muted">Email me at</p>
-              <p className="font-medium text-ink">{contact.email}</p>
-            </div>
-          </a>
-
-          <a
-            href={`tel:${contact.phone}`}
-            className="flex items-center gap-4 rounded-2xl border border-charcoal/10 bg-surface p-6 text-left shadow-sm shadow-charcoal/5 transition-colors hover:border-rose/40"
-          >
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-charcoal/15">
-              <Phone className="h-6 w-6 text-charcoal" aria-hidden="true" />
-            </div>
-            <div>
-              <p className="text-sm text-muted">Call me at</p>
-              <p className="font-medium text-ink" dir="ltr">
-                {contact.phone}
-              </p>
-            </div>
-          </a>
-
-          <div className="mt-4">
-            <p className="mb-4 text-sm text-muted">Find me on</p>
-            <div className="flex flex-wrap justify-center gap-3">
+        <Reveal direction="up" delay={0.12}>
+          <div className="mt-8 flex flex-col items-center gap-4">
+            <p className="text-xs tracking-[0.2em] text-muted uppercase">
+              Find me on
+            </p>
+            <div className="flex flex-wrap justify-center gap-1 sm:gap-3">
               {contact.socials.map((social) => {
                 const Icon = socialIcons[social.icon];
                 return (
@@ -138,16 +129,22 @@ export function ContactSection() {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 rounded-xl border border-charcoal/10 bg-surface px-5 py-3 text-sm text-ink/80 shadow-sm shadow-charcoal/5 transition-all hover:border-rose/40 hover:text-rose"
+                    className="btn-ghost !px-3.5 !py-2 !text-[13px] sm:!px-4 sm:!py-2.5 sm:!text-sm"
                   >
-                    {Icon && <Icon className="h-4 w-4" aria-hidden="true" />}
+                    {Icon && (
+                      <Icon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                    )}
                     {social.name}
                   </a>
                 );
               })}
             </div>
           </div>
-        </motion.div>
+        </Reveal>
+
+        <p className="mt-10 text-center text-xs text-muted/70 sm:mt-14">
+          © {new Date().getFullYear()} {portfolioData.name.full}
+        </p>
       </div>
     </section>
   );

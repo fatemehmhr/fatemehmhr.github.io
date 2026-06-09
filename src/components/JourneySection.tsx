@@ -1,116 +1,92 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
+import { Reveal } from "@/components/Reveal";
+import { SectionHeader } from "@/components/SectionHeader";
 
 export function JourneySection() {
   const { journey, stats, vision } = portfolioData;
 
   return (
-    <section className="flex min-h-screen flex-col justify-center px-6 py-24">
+    <section className="flex min-h-screen flex-col justify-center px-6 sm:pb-16">
       <div className="mx-auto w-full max-w-5xl">
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-2 text-sm font-medium tracking-widest text-rose uppercase"
-        >
-          My Journey
-        </motion.p>
+        <SectionHeader
+          index="02"
+          kicker="My Journey"
+          title={journey.title}
+          subtitle={journey.subtitle}
+        />
 
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="mb-3 text-3xl font-bold text-ink sm:text-4xl"
-        >
-          {journey.title}
-        </motion.h2>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="mb-12 text-lg text-muted"
-        >
-          {journey.subtitle}
-        </motion.p>
-
-        <div className="mb-16 grid gap-6 md:grid-cols-3">
+        {/* Skill cards with running index */}
+        <div className="mb-2 grid gap-1 sm:gap-3 sm:grid-cols-2 sm:gap-2 lg:grid-cols-3">
           {journey.skills.map((skill, i) => (
-            <motion.div
-              key={skill.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.15 }}
-              whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              className="group rounded-2xl border border-charcoal/10 bg-surface p-8 shadow-sm shadow-charcoal/5 transition-shadow hover:border-rose/40 hover:shadow-lg hover:shadow-rose/15"
-            >
-              <span className="mb-4 block text-4xl">{skill.emoji}</span>
-              <h3 className="mb-3 text-xl font-semibold text-ink">
-                {skill.title}
-              </h3>
-              <p className="text-sm leading-relaxed text-muted">
-                {skill.items}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-
-        <div className="mb-20 grid grid-cols-3 gap-4">
-          {stats.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="rounded-2xl border border-charcoal/10 bg-surface py-8 text-center shadow-sm shadow-charcoal/5"
-            >
-              <div className="mb-1 text-4xl font-bold bg-gradient-to-r from-rose to-charcoal bg-clip-text text-transparent sm:text-5xl">
-                {stat.value}
+            <Reveal key={skill.title} direction="up" delay={i * 0.06}>
+              <div className="card group h-full overflow-hidden p-3 sm:p-3">
+                <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-sky/40 text-2xl transition group-hover:-rotate-6 group-hover:bg-teal/20">
+                  {skill.emoji}
+                </span>
+                <h3 className="mb-2 text-base font-semibold text-ink sm:text-lg">
+                  {skill.title}
+                </h3>
+                <p className="text-xs leading-relaxed text-muted sm:text-sm">
+                  {skill.items}
+                </p>
               </div>
-              <div className="text-sm text-muted">{stat.label}</div>
-            </motion.div>
+            </Reveal>
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="rounded-3xl border border-charcoal/10 bg-gradient-to-br from-rose-soft/40 via-surface to-rose/10 p-8 shadow-sm shadow-charcoal/5 sm:p-12"
-        >
-          <h2 className="mb-3 text-2xl font-bold text-ink sm:text-3xl">
-            {vision.heading}
-          </h2>
-          <p className="mb-8 max-w-2xl text-muted">{vision.subheading}</p>
+        
 
-          <div className="mb-8 flex flex-wrap gap-3">
-            {vision.roles.map((role) => (
-              <span
-                key={role}
-                className="rounded-full border border-rose/40 bg-rose/15 px-4 py-1.5 text-sm font-medium text-charcoal"
-              >
-                {role}
-              </span>
-            ))}
-          </div>
+        {/* Vision — high-contrast navy panel */}
+        <Reveal direction="up">
+          <div className="relative overflow-hidden rounded-[1.75rem] bg-navy p-8 text-white shadow-[0_30px_70px_-30px_rgba(47,65,86,0.7)] sm:p-8">
+            {/* decorative glows */}
+            <div className="animate-float-slow pointer-events-none absolute -top-24 -right-16 h-72 w-72 rounded-full bg-teal/40 opacity-60 blur-3xl" />
+            <div className="animate-float-slower pointer-events-none absolute -bottom-28 -left-10 h-72 w-72 rounded-full bg-sky/30 opacity-50 blur-3xl" />
+            <div
+              className="pointer-events-none absolute inset-0 opacity-[0.06]"
+              style={{
+                backgroundImage:
+                  "linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)",
+                backgroundSize: "44px 44px",
+                maskImage:
+                  "radial-gradient(ellipse at 70% 0%, black 30%, transparent 80%)",
+                WebkitMaskImage:
+                  "radial-gradient(ellipse at 70% 0%, black 30%, transparent 80%)",
+              }}
+            />
 
-          <div className="grid gap-6 sm:grid-cols-2">
-            <div className="rounded-xl border border-charcoal/10 bg-surface/70 p-6">
-              <h3 className="mb-2 font-semibold text-rose">Vision</h3>
-              <p className="text-ink/75">{vision.visionText}</p>
-            </div>
-            <div className="rounded-xl border border-charcoal/10 bg-surface/70 p-6">
-              <h3 className="mb-2 font-semibold text-charcoal">Mission</h3>
-              <p className="text-ink/75">{vision.mission}</p>
+            <div className="relative">
+              <span className="kicker !text-sky">Vision &amp; Mission</span>
+              <h2 className="font-display mt-3 mb-3 text-xl text-white sm:text-3xl">
+                {vision.heading}
+              </h2>
+              <p className="mb-8 max-w-2xl text-sm text-sky/85 sm:text-base">
+                {vision.subheading}
+              </p>
+
+              <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
+                <div className="rounded-2xl border border-white/15 bg-white/[0.06] p-6 backdrop-blur-sm transition hover:bg-white/[0.1]">
+                  <h3 className="mb-2 text-sm font-semibold text-sky sm:text-base">
+                    Vision
+                  </h3>
+                  <p className="text-sm text-white/80 sm:text-[15px]">
+                    {vision.visionText}
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-white/15 bg-white/[0.06] p-6 backdrop-blur-sm transition hover:bg-white/[0.1]">
+                  <h3 className="mb-2 text-sm font-semibold text-sky sm:text-base">
+                    Mission
+                  </h3>
+                  <p className="text-sm text-white/80 sm:text-[15px]">
+                    {vision.mission}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );
