@@ -1,10 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
 import { HoverText } from "@/components/HoverText";
+
+// Public assets are not rewritten with the deployment basePath, so prefix them
+// manually. `NEXT_PUBLIC_BASE_PATH` is "" in dev and "/resume" in production.
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 interface HeroSectionProps {
   onScrollDown: () => void;
@@ -60,12 +63,12 @@ export function HeroSection({ onScrollDown }: HeroSectionProps) {
           transition={{ delay: 0.1, duration: 0.6 }}
           className="shrink-0 h-36 w-36 overflow-hidden rounded-full border border-charcoal/10 bg-surface p-1 shadow-lg shadow-rose/30 ring-2 ring-rose/40 sm:h-44 sm:w-44"
         >
-          <Image
-            src="/profile.png"
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={`${basePath}/profile.png`}
             alt={portfolioData.name.full}
             width={176}
             height={176}
-            priority
             className="h-full w-full rounded-full object-cover"
           />
         </motion.div>
