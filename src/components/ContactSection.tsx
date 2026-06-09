@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
@@ -55,40 +54,13 @@ const socialIcons: Record<string, (props: IconProps) => React.ReactElement> = {
 
 export function ContactSection() {
   const { contact } = portfolioData;
-  const [formState, setFormState] = useState({
-    name: "",
-    message: "",
-  });
-
-  // Open the visitor's own email client with a pre-filled message addressed
-  // to the site owner. No backend or SMTP credentials are required: the
-  // visitor sends from their own mailbox.
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const subject = `Portfolio message from ${formState.name}`;
-    const body = `${formState.message}\n\n— ${formState.name}`;
-    const mailto = `mailto:${contact.email}?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
-
-    // Trigger via a synthetic anchor click. Re-assigning `window.location` to
-    // a mailto: URL is ignored by some browsers on repeated submissions, so a
-    // fresh click each time is the reliable approach.
-    const link = document.createElement("a");
-    link.href = mailto;
-    link.rel = "noopener noreferrer";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
 
   return (
     <section
       id="contact"
       className="flex min-h-screen flex-col justify-center px-6 py-24 pb-40"
     >
-      <div className="mx-auto w-full max-w-5xl">
+      <div className="mx-auto w-full max-w-2xl text-center">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -113,97 +85,51 @@ export function ContactSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="mb-12 max-w-xl text-muted"
+          className="mx-auto mb-12 max-w-xl text-muted"
         >
           Have a project in mind or want to collaborate? I&apos;d love to hear
-          from you. Send me a message and let&apos;s create something
-          extraordinary.
+          from you. Reach out through any of the channels below and let&apos;s
+          create something extraordinary.
         </motion.p>
 
-        <div className="grid gap-10 lg:grid-cols-2">
-          <motion.form
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            onSubmit={handleSubmit}
-            className="space-y-5"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+          className="flex flex-col items-stretch gap-5"
+        >
+          <a
+            href={`mailto:${contact.email}`}
+            className="flex items-center gap-4 rounded-2xl border border-charcoal/10 bg-surface p-6 text-left shadow-sm shadow-charcoal/5 transition-colors hover:border-rose/40"
           >
-            <div>
-              <label htmlFor="name" className="mb-1.5 block text-sm text-muted">
-                Name
-              </label>
-              <input
-                id="name"
-                type="text"
-                required
-                value={formState.name}
-                onChange={(e) =>
-                  setFormState((s) => ({ ...s, name: e.target.value }))
-                }
-                className="w-full rounded-xl border border-charcoal/15 bg-surface px-4 py-3 text-ink placeholder-muted/60 outline-none transition-colors focus:border-rose"
-                placeholder="Your name"
-              />
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-rose/20">
+              <Mail className="h-6 w-6 text-rose" aria-hidden="true" />
             </div>
             <div>
-              <label htmlFor="message" className="mb-1.5 block text-sm text-muted">
-                Message
-              </label>
-              <textarea
-                id="message"
-                required
-                rows={5}
-                value={formState.message}
-                onChange={(e) =>
-                  setFormState((s) => ({ ...s, message: e.target.value }))
-                }
-                className="w-full resize-none rounded-xl border border-charcoal/15 bg-surface px-4 py-3 text-ink placeholder-muted/60 outline-none transition-colors focus:border-rose"
-                placeholder="Tell me about your project..."
-              />
+              <p className="text-sm text-muted">Email me at</p>
+              <p className="font-medium text-ink">{contact.email}</p>
             </div>
-            <button
-              type="submit"
-              className="w-full rounded-xl bg-gradient-to-r from-rose to-charcoal py-3.5 font-medium text-white transition-opacity hover:opacity-90"
-            >
-              Send Message
-            </button>
-          </motion.form>
+          </a>
 
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="flex flex-col justify-center"
+          <a
+            href={`tel:${contact.phone}`}
+            className="flex items-center gap-4 rounded-2xl border border-charcoal/10 bg-surface p-6 text-left shadow-sm shadow-charcoal/5 transition-colors hover:border-rose/40"
           >
-            <a
-              href={`mailto:${contact.email}`}
-              className="mb-8 flex items-center gap-4 rounded-2xl border border-charcoal/10 bg-surface p-6 shadow-sm shadow-charcoal/5 transition-colors hover:border-rose/40"
-            >
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-rose/20">
-                <Mail className="h-6 w-6 text-rose" aria-hidden="true" />
-              </div>
-              <div>
-                <p className="text-sm text-muted">Email me at</p>
-                <p className="font-medium text-ink">{contact.email}</p>
-              </div>
-            </a>
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-charcoal/15">
+              <Phone className="h-6 w-6 text-charcoal" aria-hidden="true" />
+            </div>
+            <div>
+              <p className="text-sm text-muted">Call me at</p>
+              <p className="font-medium text-ink" dir="ltr">
+                {contact.phone}
+              </p>
+            </div>
+          </a>
 
-            <a
-              href={`tel:${contact.phone}`}
-              className="mb-8 flex items-center gap-4 rounded-2xl border border-charcoal/10 bg-surface p-6 shadow-sm shadow-charcoal/5 transition-colors hover:border-rose/40"
-            >
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-charcoal/15">
-                <Phone className="h-6 w-6 text-charcoal" aria-hidden="true" />
-              </div>
-              <div>
-                <p className="text-sm text-muted">Call me at</p>
-                <p className="font-medium text-ink" dir="ltr">
-                  {contact.phone}
-                </p>
-              </div>
-            </a>
-
+          <div className="mt-4">
             <p className="mb-4 text-sm text-muted">Find me on</p>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap justify-center gap-3">
               {contact.socials.map((social) => {
                 const Icon = socialIcons[social.icon];
                 return (
@@ -220,8 +146,8 @@ export function ContactSection() {
                 );
               })}
             </div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
