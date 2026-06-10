@@ -57,15 +57,10 @@ export function useActiveSection() {
         }, 100);
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, []);
 
-  // Determine the active section from scroll position rather than from
-  // intersection ratios. Sections like "projects" are far taller than the
-  // viewport, so a ratio-based observer never crosses its thresholds and the
-  // section is never reported as active. Instead we pick the last section
-  // whose top has scrolled past a reference line near the top of the viewport,
-  // which is reliable regardless of section height.
+
   useEffect(() => {
     let frame = 0;
 
@@ -73,7 +68,6 @@ export function useActiveSection() {
       frame = 0;
       if (lockRef.current) return;
 
-      // Reference line ~35% down the viewport.
       const referenceLine = window.innerHeight * 0.35;
       let current: SectionId = sectionIds[0];
 

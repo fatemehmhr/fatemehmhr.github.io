@@ -41,18 +41,31 @@ export const portfolioData = {
       {
         emoji: "💻",
         title: "Core",
-        items: "HTML5 · CSS3 · JavaScript · TypeScript · React.js (hooks) · Next.js",
+        items: "HTML5 · CSS3 · JavaScript · TypeScript · React.js (Hooks) · Next.js",
       },
       {
         emoji: "🧩",
         title: "State & Data",
         items:
-          "Redux / Redux Toolkit · React Query · Immer.js · REST API · GraphQL · WebSocket",
+          "Redux / Redux Toolkit · React Query · Immer.js · WebSocket",
+      },
+      {
+        emoji: "🔌",
+        title: "API & Development Tools",
+        items:
+          "REST API · GraphQL · Postman · Swagger/OpenAPI",
+      },
+      {
+        emoji: "✨",
+        title: "UI, Animation & Visualization",
+        items:
+          "Recharts · ECharts · D3.js · GSAP · Framer Motion",
       },
       {
         emoji: "🎨",
         title: "Styling & Tools",
-        items: "TailwindCSS · SASS · Material UI · Ant Design · Responsive Design · Git",
+        items:
+          "TailwindCSS · SASS · Material UI · Ant Design · Responsive Design · Git",
       },
       {
         emoji: "📝",
@@ -62,7 +75,7 @@ export const portfolioData = {
       {
         emoji: "⚙️",
         title: "Web & Integrations",
-        items: "PWA · Google reCAPTCHA",
+        items: "PWA · Web Worker · Google reCAPTCHA",
       },
       {
         emoji: "🐍",

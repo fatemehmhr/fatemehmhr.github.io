@@ -43,7 +43,7 @@ export function HeroSection({ onScrollDown }: HeroSectionProps) {
             style={{ animationDelay: "0.1s" }}
           >
             <span className="block text-xl font-normal text-navy/55 italic xs:text-2xl sm:text-3xl md:text-4xl">
-              Hi, it&apos;s
+              Hi, I&apos;m
             </span>
             <span className="text-gradient-anim capitalize">{name.first}</span>{" "}
             <span className="text-navy capitalize">{name.last}</span>
@@ -90,7 +90,7 @@ export function HeroSection({ onScrollDown }: HeroSectionProps) {
 
       <button
         onClick={onScrollDown}
-        className="group absolute bottom-26 flex flex-col items-center gap-2 text-[11px] tracking-[0.3em] text-muted transition hover:text-navy bottom-22 sm:bottom-24"
+        className="group absolute bottom-32 flex flex-col items-center gap-2 text-[11px] tracking-[0.3em] text-muted transition hover:text-navy sm:bottom-24"
         aria-label="Scroll to about section"
       >
         SCROLL

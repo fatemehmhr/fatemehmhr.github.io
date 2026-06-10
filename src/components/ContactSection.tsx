@@ -143,7 +143,7 @@ export function ContactSection() {
         </Reveal>
 
         <p className="mt-10 text-center text-xs text-muted/70 sm:mt-14">
-          © {new Date().getFullYear()} {portfolioData.name.full}
+          © {portfolioData.name.full}
         </p>
       </div>
     </section>

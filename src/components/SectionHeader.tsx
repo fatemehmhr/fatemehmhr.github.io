@@ -20,14 +20,13 @@ interface SectionHeaderProps {
  * kicker + display title, giving every section a magazine-like rhythm.
  */
 export function SectionHeader({
-  index,
   kicker,
   title,
   subtitle,
   className,
 }: SectionHeaderProps) {
   return (
-    <div className={`relative sm:mb-4 mb-2  ${className ?? ""}`}>
+    <div className={`relative sm:mb-4 mb-2 sm:mt-8 ${className ?? ""}`}>
       
 
       <div className="relative pl-1">
