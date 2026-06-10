@@ -90,7 +90,7 @@ export function HeroSection({ onScrollDown }: HeroSectionProps) {
 
       <button
         onClick={onScrollDown}
-        className="group absolute bottom-54 flex flex-col items-center gap-2 text-[11px] tracking-[0.3em] text-muted transition hover:text-navy sm:bottom-24"
+        className="group absolute bottom-42 flex flex-col items-center gap-2 text-[11px] tracking-[0.3em] text-muted transition hover:text-navy sm:bottom-24"
         aria-label="Scroll to about section"
       >
         SCROLL
