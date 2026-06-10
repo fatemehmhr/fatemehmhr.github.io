@@ -18,9 +18,9 @@ export function HeroSection({ onScrollDown }: HeroSectionProps) {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-5 sm:pt-10 sm:px-6 pb-36 sm:pb-28"
+      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-5 sm:pt-10 sm:px-6 pb-64 sm:pb-28"
     >
-      <div className="relative z-10 grid w-full max-w-5xl items-center gap-8 sm:grid-cols-[auto_1fr] sm:gap-12">
+      <div className="relative z-10 grid w-full max-w-5xl items-center gap-4 sm:gap-8 sm:grid-cols-[auto_1fr] sm:gap-12">
         {/* Avatar with spinning gradient ring */}
         <div className="animate-rise mx-auto sm:mx-0">
           <div className="gradient-ring spin h-32 w-32 xs:h-40 xs:w-40 sm:h-52 sm:w-52">
@@ -90,7 +90,7 @@ export function HeroSection({ onScrollDown }: HeroSectionProps) {
 
       <button
         onClick={onScrollDown}
-        className="group absolute bottom-32 flex flex-col items-center gap-2 text-[11px] tracking-[0.3em] text-muted transition hover:text-navy sm:bottom-24"
+        className="group absolute bottom-54 flex flex-col items-center gap-2 text-[11px] tracking-[0.3em] text-muted transition hover:text-navy sm:bottom-24"
         aria-label="Scroll to about section"
       >
         SCROLL
